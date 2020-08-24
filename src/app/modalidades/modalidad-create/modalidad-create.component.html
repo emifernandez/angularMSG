@@ -1,0 +1,80 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Crear Modalidad</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']" routerLinkActive="router-link-active"
+                >Inicio</a
+              >
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/modalidades']" routerLinkActive="router-link-active"
+                >Modalidad</a
+              >
+            </li>
+            <li class="breadcrumb-item active">Crear Modalidad</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <!-- form start -->
+        <form [formGroup]="form" (ngSubmit)="grabar()">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="descripcion">Descripcion</label>
+              <input
+                type="text"
+                formControlName="descripcion"
+                class="form-control"
+                id="descripcion"
+                placeholder="Introduzca descripción"
+              />
+              <div
+                *ngIf="
+                    f.descripcion.invalid &&
+                    (f.descripcion.dirty || f.descripcion.touched)
+                    "
+                    class="alert alert-danger"
+                >
+                <div *ngIf="f.descripcion.errors.required">
+                  La descripcion es requerida.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="margin-right: 5px;"
+              [disabled]="!form.valid"
+            >
+              Grabar
+            </button>
+            <i
+              class="btn btn-secondary"
+              [routerLink]="['/modalidades']"
+              routerLinkActive="router-link-active"
+              >Cancelar</i
+            >
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  

@@ -1,22 +1,23 @@
-import { RolService } from './../../services/rol.service';
 import { Component, OnInit } from '@angular/core';
-import { Rol } from 'src/app/models/rol.model';
+import { ModalidadService } from './../../services/modalidad.service';
+import { Modalidad } from 'src/app/models/modalidad.model';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-roles',
-  templateUrl: './roles.component.html',
-  styleUrls: ['./roles.component.sass'],
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.sass']
 })
-export class RolesComponent implements OnInit {
+export class IndexComponent implements OnInit {
+
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
-  roles: Rol[] = [];
+  modalidades: Modalidad[] = [];
   popoverTitle = 'Eliminar Registro';
   popoverMessage = '¿Esta Seguro que desea eliminar el registro?';
 
-  constructor(public rolService: RolService, private toastr: ToastrService) {}
+  constructor(private modalidadService: ModalidadService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -46,21 +47,22 @@ export class RolesComponent implements OnInit {
         },
       },
     };
-    this.get();
+    this.get(); 
   }
 
   get(): void {
-    this.rolService.getAll().subscribe((data: Rol[]) => {
+    this.modalidadService.getAll().subscribe((data: Modalidad[]) => {
       const field = 'data';
-      this.roles = data[field];
+      this.modalidades = data[field];
       this.dtTrigger.next();
     });
   }
 
   delete(id): void {
-    this.rolService.delete(id).subscribe((res) => {
-      this.roles = this.roles.filter((item) => item.id !== id);
-      this.toastr.success('Rol eliminado correctamente!');
+    this.modalidadService.delete(id).subscribe((res) => {
+      this.modalidades = this.modalidades.filter((item) => item.id !== id);
+      this.toastr.success('Modalidad eliminada correctamente!');
     });
   }
+
 }

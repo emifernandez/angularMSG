@@ -11,9 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { DataTablesModule } from 'angular-datatables';
+import { IndexComponent } from './modalidades/index/index.component';
+import { ModalidadCreateComponent } from './modalidades/modalidad-create/modalidad-create.component';
+import { ModalidadEditComponent } from './modalidades/modalidad-edit/modalidad-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, RolesComponent, CreateComponent, EditComponent],
+  declarations: [AppComponent, RolesComponent, CreateComponent, EditComponent, IndexComponent, ModalidadCreateComponent, ModalidadEditComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
